@@ -22,4 +22,6 @@ const useMacbookStore = create<MacbookStore>()((set) => ({
     reset: () => set ({color: '#2e2c2e', scale: 0.08,})
 }))
 
+
+
 export default useMacbookStore;
