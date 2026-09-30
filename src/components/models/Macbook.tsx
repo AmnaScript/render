@@ -70,7 +70,12 @@ export default function Macbook(props: React.JSX.IntrinsicElements['group']) {
     scene.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         if (!noChangeParts.includes(child.name)) {
-          child.material.color = new THREE.Color(color)
+          const meshMaterials = Array.isArray(child.material)
+            ? child.material
+            : [child.material]
+          meshMaterials.forEach((material) => {
+            if (material instanceof THREE.MeshStandardMaterial) { material.color.set(color) }
+          })
         }
       }
     })
@@ -95,7 +100,7 @@ export default function Macbook(props: React.JSX.IntrinsicElements['group']) {
       <mesh geometry={nodes.Object_82.geometry} material={materials.gMtYExgrEUqPfln} rotation={[Math.PI / 2, 0, 0]} />
       <mesh geometry={nodes.Object_96.geometry} material={materials.PaletteMaterial003} rotation={[Math.PI / 2, 0, 0]} />
       <mesh geometry={nodes.Object_107.geometry} material={materials.JvMFZolVCdpPqjj} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes.Object_123.geometry}  rotation={[Math.PI / 2, 0, 0]} >
+      <mesh geometry={nodes.Object_123.geometry} rotation={[Math.PI / 2, 0, 0]} >
         <meshBasicMaterial map={screen} />
       </mesh>
       <mesh geometry={nodes.Object_127.geometry} material={materials.ZCDwChwkbBfITSW} rotation={[Math.PI / 2, 0, 0]} />
